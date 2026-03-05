@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 21:01:28 by esttina           #+#    #+#             */
-/*   Updated: 2026/03/05 17:10:43 by esttina          ###   ########.fr       */
+/*   Created: 2026/03/05 17:00:34 by esttina           #+#    #+#             */
+/*   Updated: 2026/03/05 17:02:22 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void handle_signal()
-{
-	static int	bit_index;
-	static char	current_char;
+# include <signal.h>
 
-	bit_index = 0;
-	current_char = 0;	
-	
-	if (bit_index == 8)
-	{
-		ft_printf("%c", current_char);
-		bit_index = 0;
-		current_char = 0;
-	}
-}
+# include "ft_printf.h"
+
+#endif

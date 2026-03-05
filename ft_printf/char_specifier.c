@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   char_specifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 21:01:28 by esttina           #+#    #+#             */
-/*   Updated: 2026/03/05 17:10:43 by esttina          ###   ########.fr       */
+/*   Created: 2025/11/02 18:18:22 by esttina           #+#    #+#             */
+/*   Updated: 2025/12/04 02:12:31 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "ft_printf.h"
 
-void handle_signal()
+int	ft_char(char c)
 {
-	static int	bit_index;
-	static char	current_char;
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
+}
 
-	bit_index = 0;
-	current_char = 0;	
-	
-	if (bit_index == 8)
+int	ft_string(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		s = "(null)";
+	while (s[i])
 	{
-		ft_printf("%c", current_char);
-		bit_index = 0;
-		current_char = 0;
+		if (write(1, &s[i], 1) == -1)
+			return (-1);
+		i++;
 	}
+	return (i);
 }
