@@ -6,24 +6,45 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:01:28 by esttina           #+#    #+#             */
-/*   Updated: 2026/03/05 17:10:43 by esttina          ###   ########.fr       */
+/*   Updated: 2026/03/14 02:19:12 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void handle_signal()
+void handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static int	bit_index;
 	static char	current_char;
 
-	bit_index = 0;
-	current_char = 0;	
+	if (sig == SIGUSR2)
+		current_char |= (1 << bit_index); //set the bit to 1
+	bit_index++;
 	
 	if (bit_index == 8)
 	{
-		ft_printf("%c", current_char);
+		write(1, &current_char, 1);
 		bit_index = 0;
 		current_char = 0;
 	}
+}
+
+int main(void)
+{
+	int					pid;
+	struct sigaction	sa;
+
+	pid = getpid();
+	ft_printf("%d\n", pid);
+	
+	sa.sa_sigaction = handle_signal;
+	sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&sa.sa_mask);
+	
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+
+	while (1)
+		pause();
+	return (0);
 }
