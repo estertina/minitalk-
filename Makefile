@@ -6,7 +6,7 @@
 #    By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/17 21:00:04 by esttina           #+#    #+#              #
-#    Updated: 2026/03/05 16:59:59 by esttina          ###   ########.fr        #
+#    Updated: 2026/03/14 05:20:43 by esttina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,13 @@ $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
 $(NAME_CLIENT): $(OBJ_CLIENT)
-	$(CC) $(OBJ_CLIENT) $(PRINTF) -o $(NAME_CLIENT) 
+	$(CC) $(FLAGS) $(OBJ_CLIENT) $(PRINTF) -o $(NAME_CLIENT) 
 
 $(NAME_SERVER): $(OBJ_SERVER)
-	$(CC) $(OBJ_SERVER) $(PRINTF) -o $(NAME_SERVER)
+	$(CC) $(FLAGS) $(OBJ_SERVER) $(PRINTF) -o $(NAME_SERVER)
 
 %.o: %.c minitalk.h
-	${CC} ${FLAGS} $(INCLUDES)-c $< -o $@
+	${CC} ${FLAGS} $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf ${OBJ_CLIENT} ${OBJ_SERVER}

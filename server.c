@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:01:28 by esttina           #+#    #+#             */
-/*   Updated: 2026/03/14 02:19:12 by esttina          ###   ########.fr       */
+/*   Updated: 2026/03/16 01:17:40 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@ void handle_signal(int sig, siginfo_t *info, void *context)
 	static int	bit_index;
 	static char	current_char;
 
+	// bit_index = 0;
+	// current_char = 0;
+
+	(void)info;
+	(void)context;
+
 	if (sig == SIGUSR2)
 		current_char |= (1 << bit_index); //set the bit to 1
 	bit_index++;
 	
 	if (bit_index == 8)
 	{
-		write(1, &current_char, 1);
+		if (current_char == '\0')
+			write(1, "\n", 1);
+		else
+			write(1, &current_char, 1);
 		bit_index = 0;
 		current_char = 0;
 	}
@@ -35,8 +44,8 @@ int main(void)
 	struct sigaction	sa;
 
 	pid = getpid();
-	ft_printf("%d\n", pid);
-	
+	ft_printf("Server PID: %d\n", pid);
+
 	sa.sa_sigaction = handle_signal;
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);

@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:00:34 by esttina           #+#    #+#             */
-/*   Updated: 2026/03/12 20:22:19 by esttina          ###   ########.fr       */
+/*   Updated: 2026/03/16 00:44:44 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <signal.h>
 # include <stdio.h>
-# include "ft_printf.h"
+# include "ft_printf/ft_printf.h"
 # include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
 
 #endif
