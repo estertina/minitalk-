@@ -6,7 +6,7 @@
 /*   By: esttina <esttina@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 21:01:28 by esttina           #+#    #+#             */
-/*   Updated: 2026/07/15 23:52:00 by esttina          ###   ########.fr       */
+/*   Updated: 2026/07/16 07:53:46 by esttina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 	static int	bit_index;
 	static char	current_char;
 
-	(void)info;
 	(void)context;
 	if (sig == SIGUSR2)
 		current_char |= (1 << bit_index);
